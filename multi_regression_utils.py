@@ -3,6 +3,7 @@ from sklearn.datasets import load_diabetes
 import pandas as pd
 import numpy as np
 import tensorflow as tf
+from tensorflow.keras import layers, models
 
 def generate_data():
     '''loads the diabetes dataset in Normalized format (zero mean and unit std). 
@@ -25,3 +26,10 @@ def create_dataloader(X,y,batch_size):
     dataset = tf.data.Dataset.from_tensor_slices((X_tensor, y_tensor))
     dataloader = dataset.shuffle(buffer_size=len(X)).batch(batch_size)
     return dataloader
+
+def build_network():
+    model = models.Sequential()
+    model.add(layers.Dense(25, activation='relu', input_shape = (10,))),
+    model.add(layers.Dense(25,activation='relu')),
+    model.add(layers.Dense(1))
+    return model
